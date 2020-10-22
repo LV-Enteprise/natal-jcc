@@ -3,30 +3,37 @@ HEROKU (é gratuito?) --> Postgress
 Atlas  (é gratuito?) --> MongoDB
 #####################################
 
-########## Familia #######################
-(PF) Id               | GUID
-Endereco              | VARCHAR(255)
-Telefone              | VARCHAR(10) NULL
-Celular               | VARCHAR(11) NULL
-TotalPessoasFamilia   | INT
-##########################################
+########## Familia ######################################
+(PF) Id               | uuid
+Endereco              | character varying(255) not null
+Telefone              | character varying(10)  null
+Celular               | character varying(11)  null
+Religiao              | character varying(80)  null
+InformacaoIgreja      | character varying(300) null
+Observacao            | text                   null
+TotalPessoasFamilia   | integer                not null
+#########################################################
 
-########## Parentesco #########
-(PK) Id     | GUID
-Descrição   | VARCHAR(100)
-###############################
+########## Parentesco (tabela de domínio) #########
+(PK) Id            | uuid
+(PK|FK) FamiliaId  | uuid
+Descricao          | character varying(100) not null
+NomeParente        | character varying(255) not null
+###################################################
 
-########## FamiliaParentesco ##########
-(PK|FK) ParentescoId | GUID
-(PK|FK) FamiliaId    | GUID
-NomeParente          | VARCHAR(255)
-#######################################
-
-########## FamiliaCrianca #############
-Id                   | GUID
-Nome                 | VARCHAR(255)
-DataNascimento       | DATE
-(PK|FK) FamiliaId    | GUID
+########## Crianca ###################
+Id                   | uuid
+Nome                 | character varying(255) not null
+DataNascimento       | date                   not null
+Batizado             | boolean                not null
+FazendoCatequese     | boolean                not null
+ConcluiuCatequese    | boolean                not null
+FazendoPerseveranca  | boolean                not null
+ConcluiuPerseveranca | boolean                not null
+FazendoCrisma        | boolean                not null
+ConcluiuCrisma       | boolean                not null
+Observacao           | text                   null
+(PK|FK) FamiliaId    | uuid
 #######################################
 
 
