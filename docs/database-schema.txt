@@ -1,0 +1,81 @@
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+
+CREATE TABLE "Family" (
+    "Id" uuid NOT NULL,
+    "Address" character varying(255) NOT NULL,
+    "PhoneNumber" character varying(10) NOT NULL,
+    "CellPhoneNumber" character varying(11) NOT NULL,
+    "Religion" character varying(80) NULL,
+    "ChurchInformation" character varying(300) NULL,
+    "Observation" text NULL,
+    "TotalFamilyMembers" integer NOT NULL,
+    CONSTRAINT "PK_Family" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE "Kid" (
+    "Id" uuid NOT NULL,
+    "Name" character varying(255) NOT NULL,
+    "BirthDate" date NOT NULL,
+    "KidReligionInformation_IsBaptized" boolean NULL,
+    "KidReligionInformation_DoingCatechesis" boolean NULL,
+    "KidReligionInformation_DoneCatechesis" boolean NULL,
+    "KidReligionInformation_DoingPerse" boolean NULL,
+    "KidReligionInformation_DonePerse" boolean NULL,
+    "KidReligionInformation_DoingConfirmationSacrament" boolean NULL,
+    "KidReligionInformation_DoneConfirmationSacrament" boolean NULL,
+    "Observation" text NULL,
+    "FamilyId" uuid NOT NULL,
+    CONSTRAINT "PK_Kid" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Kid_Family_FamilyId" FOREIGN KEY ("FamilyId") REFERENCES "Family" ("Id") ON DELETE CASCADE
+);
+
+CREATE TABLE "Kinship" (
+    "Id" uuid NOT NULL,
+    "Description" character varying(80) NOT NULL,
+    "PersonName" character varying(255) NOT NULL,
+    "FamilyId" uuid NOT NULL,
+    CONSTRAINT "PK_Kinship" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Kinship_Family_FamilyId" FOREIGN KEY ("FamilyId") REFERENCES "Family" ("Id") ON DELETE CASCADE
+);
+
+CREATE INDEX "IX_Kid_FamilyId" ON "Kid" ("FamilyId");
+
+CREATE INDEX "IX_Kinship_FamilyId" ON "Kinship" ("FamilyId");
+
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20201022012008_InitialMigration', '3.1.9');
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_DoingCatechesis";
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_DoingConfirmationSacrament";
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_DoingPerse";
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_DoneCatechesis";
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_DoneConfirmationSacrament";
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_DonePerse";
+
+ALTER TABLE "Kid" DROP COLUMN "KidReligionInformation_IsBaptized";
+
+CREATE TABLE "KidReligionInformation" (
+    "Id" uuid NOT NULL,
+    "IsBaptized" boolean NOT NULL,
+    "DoingCatechesis" boolean NOT NULL,
+    "DoneCatechesis" boolean NOT NULL,
+    "DoingPerse" boolean NOT NULL,
+    "DonePerse" boolean NOT NULL,
+    "DoingConfirmationSacrament" boolean NOT NULL,
+    "DoneConfirmationSacrament" boolean NOT NULL,
+    CONSTRAINT "PK_KidReligionInformation" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_KidReligionInformation_Kid_Id" FOREIGN KEY ("Id") REFERENCES "Kid" ("Id") ON DELETE CASCADE
+);
+
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20201023011235_KidReligionInformation', '3.1.9');
+
