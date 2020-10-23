@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201023003053_KidReligionInformation.cs" />
+    <Compile Remove="Migrations\20201023003053_KidReligionInformation.Designer.cs" />
+    <Compile Remove="Migrations\20201023003142_KidReligionInformation.cs" />
+    <Compile Remove="Migrations\20201023003142_KidReligionInformation.Designer.cs" />
+    <Compile Remove="Migrations\20201023004641_KidReligionInformation.cs" />
+    <Compile Remove="Migrations\20201023004641_KidReligionInformation.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
   </ItemGroup>
 

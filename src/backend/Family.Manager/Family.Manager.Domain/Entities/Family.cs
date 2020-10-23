@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Family.Manager.Domain.Entities
 {
-    public class Family : Entity
+    public class Family : Entity<Guid>
     {
-        protected Family() { }
+        private Family() { }
 
         public Family(
             string address,

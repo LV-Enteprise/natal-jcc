@@ -9,15 +9,19 @@ namespace Family.Manager.Infrastructure.Mappings
         public void Configure(EntityTypeBuilder<Kinship> builder)
         {
             builder.ToTable("Kinship");
-            builder.HasKey(p => p.Id);
+            builder.HasKey(k => k.Id);
 
-            builder.Property(p => p.Description)
+            builder.Property(k => k.Description)
                 .HasColumnType("character varying(80)")
                 .IsRequired();
 
-            builder.Property(p => p.PersonName)
+            builder.Property(k => k.PersonName)
                 .HasColumnType("character varying(255)")
                 .IsRequired();
+
+            builder.HasOne(k => k.Family)
+                   .WithMany(f => f.Kinships)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Family.Manager.Domain.Entities
+﻿namespace Family.Manager.Domain.Entities
 {
-    public abstract class Entity
+    public abstract class Entity<T>
     {
-        public Guid Id { get; set; }
+        public T Id { get; set; }
     }
 }

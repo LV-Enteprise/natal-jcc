@@ -8,40 +8,32 @@ namespace Family.Manager.Infrastructure.Mappings
         public void Configure(EntityTypeBuilder<Domain.Entities.Family> builder)
         {
             builder.ToTable("Family");
-            builder.HasKey(p => p.Id);
+            builder.HasKey(f => f.Id);
 
-            builder.Property(p => p.Address)
+            builder.Property(f => f.Address)
                 .HasColumnType("character varying(255)")
                 .IsRequired();
 
-            builder.Property(p => p.PhoneNumber)
+            builder.Property(f => f.PhoneNumber)
                 .HasColumnType("character varying(10)")
                 .IsRequired();
 
-            builder.Property(p => p.CellPhoneNumber)
+            builder.Property(f => f.CellPhoneNumber)
                 .HasColumnType("character varying(11)")
                 .IsRequired();
 
-            builder.Property(p => p.Religion)
+            builder.Property(f => f.Religion)
                 .HasColumnType("character varying(80)");
 
-            builder.Property(p => p.ChurchInformation)
+            builder.Property(f => f.ChurchInformation)
                 .HasColumnType("character varying(300)");
 
-            builder.Property(p => p.Observation)
+            builder.Property(f => f.Observation)
                 .HasColumnType("text");
 
-            builder.Property(p => p.TotalFamilyMembers)
+            builder.Property(f => f.TotalFamilyMembers)
                 .HasColumnType("integer")
                 .IsRequired();
-
-            builder.HasMany(f => f.Kinships)
-                   .WithOne(k => k.Family)
-                   .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(f => f.Kids)
-                   .WithOne(k => k.Family)
-                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

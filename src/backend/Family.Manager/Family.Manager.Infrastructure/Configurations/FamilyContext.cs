@@ -11,12 +11,7 @@ namespace Family.Manager.Infrastructure.Configurations
         public DbSet<Domain.Entities.Family> Families { get; set; }
         public DbSet<Kinship> Kinships { get; set; }
         public DbSet<Kid> Kids { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseNpgsql(
-        //        "Server=127.0.0.1;Port=5433;Database=familymanager;User Id=postgres;Password=Skayline*869;");
-        //}
+        public DbSet<KidReligionInformation> KidsReligionInformation { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -49,5 +49,12 @@ namespace Family.Manager.Infrastructure
             await _context.SaveChangesAsync();
             return kid;
         }
+
+        public async Task<KidReligionInformation> AddKidReligionInformation(KidReligionInformation kidReligionInformation)
+        {
+            _context.Add(kidReligionInformation);
+            await _context.SaveChangesAsync();
+            return kidReligionInformation;
+        }
     }
 }
