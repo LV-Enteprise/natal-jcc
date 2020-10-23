@@ -9,53 +9,27 @@ namespace Family.Manager.Infrastructure.Mappings
         public void Configure(EntityTypeBuilder<Kid> builder)
         {
             builder.ToTable("Kid");
-            builder.HasKey(p => p.Id);
+            builder.HasKey(k => k.Id);
 
-            builder.Property(p => p.Name)
+            builder.Property(k => k.Name)
               .HasColumnType("character varying(255)")
               .IsRequired();
 
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.IsBaptized)
-              .HasColumnType("boolean")
-              .IsRequired();
-            
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.DoingCatechesis)
-              .HasColumnType("boolean")
-              .IsRequired();
-            
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.DoneCatechesis)
-              .HasColumnType("boolean")
-              .IsRequired();
-            
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.DoingPerse)
-              .HasColumnType("boolean")
-              .IsRequired();
-            
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.DonePerse)
-              .HasColumnType("boolean")
-              .IsRequired();
-            
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.DoingConfirmationSacrament)
-              .HasColumnType("boolean")
-              .IsRequired();
-            
-            builder.OwnsOne(p => p.KidReligionInformation)
-              .Property(p => p.DoneConfirmationSacrament)
-              .HasColumnType("boolean")
-              .IsRequired();
-
-            builder.Property(p => p.BirthDate)
+            builder.Property(k => k.BirthDate)
                 .HasColumnType("date")
                 .IsRequired();
 
-            builder.Property(p => p.Observation)
+            builder.Property(k => k.Observation)
                 .HasColumnType("text");
+
+            builder.HasOne(k => k.Family)
+                   .WithMany(f => f.Kids)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(k => k.KidReligionInformation)
+                   .WithOne(kr => kr.Kid)
+                   .HasForeignKey<KidReligionInformation>(kr => kr.Id)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

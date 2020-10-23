@@ -2,9 +2,9 @@
 
 namespace Family.Manager.Domain.Entities
 {
-    public class Kinship : Entity
+    public class Kinship : Entity<Guid>
     {
-        protected Kinship() { }
+        private Kinship() { }
 
         public Kinship(
             string description,

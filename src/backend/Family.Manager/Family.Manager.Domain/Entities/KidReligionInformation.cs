@@ -1,16 +1,23 @@
-﻿namespace Family.Manager.Domain.ValueObjects
+﻿using System;
+
+namespace Family.Manager.Domain.Entities
 {
-    public class ReligionInformation : ValueObject
+    public class KidReligionInformation : Entity<Guid>
     {
-        public ReligionInformation(
-            bool isBaptized,
-            bool doingCatechesis,
-            bool doneCatechesis,
-            bool doingPerse,
-            bool donePerse,
-            bool doingConfirmationSacrament,
-            bool doneConfirmationSacrament)
+        private KidReligionInformation() { }
+
+        public KidReligionInformation(
+            Kid kid,
+            bool isBaptized = false,
+            bool doingCatechesis = false,
+            bool doneCatechesis = false,
+            bool doingPerse = false,
+            bool donePerse = false,
+            bool doingConfirmationSacrament = false,
+            bool doneConfirmationSacrament = false)
         {
+            Id = kid.Id;
+            Kid = kid;
             IsBaptized = isBaptized;
             DoingCatechesis = doingCatechesis;
             DoneCatechesis = doneCatechesis;
@@ -27,5 +34,6 @@
         public bool DonePerse { get; private set; }
         public bool DoingConfirmationSacrament { get; private set; }
         public bool DoneConfirmationSacrament { get; private set; }
+        public Kid Kid { get; private set; }
     }
 }
