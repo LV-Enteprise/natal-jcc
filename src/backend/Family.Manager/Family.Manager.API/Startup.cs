@@ -1,3 +1,4 @@
+using AutoMapper;
 using Family.Manager.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,10 +20,15 @@ namespace Family.Manager.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbService(Configuration.GetConnectionString("FamilyDb"));
+            services.RegisterSwagger();
             services.RegisterServices();
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                {
+                    //options.SerializerSettings.ContractResolver = new LowerCaseContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,11 +39,9 @@ namespace Family.Manager.API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseSwaggerConfigurations();
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

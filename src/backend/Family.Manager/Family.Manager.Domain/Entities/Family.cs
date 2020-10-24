@@ -14,9 +14,7 @@ namespace Family.Manager.Domain.Entities
             string religion,
             string churchInformation,
             string observation,
-            int totalFamilyMembers,
-            IEnumerable<Kinship> kinships,
-            IEnumerable<Kid> kids)
+            int totalFamilyMembers)
         {
             Id = Guid.NewGuid();
             Address = address;
@@ -26,8 +24,8 @@ namespace Family.Manager.Domain.Entities
             ChurchInformation = churchInformation;
             Observation = observation;
             TotalFamilyMembers = totalFamilyMembers;
-            Kinships = kinships;
-            Kids = kids;
+            Kinships = new List<Kinship>();
+            Kids = new List<Kid>();
         }
 
         public string Address { get; private set; }
@@ -39,5 +37,9 @@ namespace Family.Manager.Domain.Entities
         public int TotalFamilyMembers { get; private set; }
         public IEnumerable<Kinship> Kinships { get; private set; }
         public IEnumerable<Kid> Kids { get; private set; }
+
+        public void AddKinships(IEnumerable<Kinship> kinships) => Kinships = kinships;
+
+        public void AddKids(IEnumerable<Kid> kids) => Kids = kids;
     }
 }
