@@ -27,13 +27,13 @@ namespace Family.Manager.Domain.Entities
             DoneConfirmationSacrament = doneConfirmationSacrament;
         }
 
-        public bool IsBaptized { get; private set; }
-        public bool DoingCatechesis { get; private set; }
-        public bool DoneCatechesis { get; private set; }
-        public bool DoingPerse { get; private set; }
-        public bool DonePerse { get; private set; }
-        public bool DoingConfirmationSacrament { get; private set; }
-        public bool DoneConfirmationSacrament { get; private set; }
+        public bool IsBaptized { get; set; }
+        public bool DoingCatechesis { get; set; }
+        public bool DoneCatechesis { get; set; }
+        public bool DoingPerse { get; set; }
+        public bool DonePerse { get; set; }
+        public bool DoingConfirmationSacrament { get; set; }
+        public bool DoneConfirmationSacrament { get; set; }
         public Kid Kid { get; private set; }
     }
 }
