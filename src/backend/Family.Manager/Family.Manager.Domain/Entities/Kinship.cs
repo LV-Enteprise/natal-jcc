@@ -17,8 +17,8 @@ namespace Family.Manager.Domain.Entities
             FamilyId = familyId;
         }
 
-        public string Description { get; private set; }
-        public string PersonName { get; private set; }
+        public string Description { get; set; }
+        public string PersonName { get; set; }
         public Guid FamilyId { get; private set; }
         public Family Family { get; private set; }
     }
