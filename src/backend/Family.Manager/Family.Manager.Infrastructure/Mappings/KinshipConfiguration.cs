@@ -21,7 +21,7 @@ namespace Family.Manager.Infrastructure.Mappings
 
             builder.HasOne(k => k.Family)
                    .WithMany(f => f.Kinships)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

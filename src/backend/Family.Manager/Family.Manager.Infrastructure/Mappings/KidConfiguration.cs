@@ -24,12 +24,12 @@ namespace Family.Manager.Infrastructure.Mappings
 
             builder.HasOne(k => k.Family)
                    .WithMany(f => f.Kids)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(k => k.KidReligionInformation)
                    .WithOne(kr => kr.Kid)
                    .HasForeignKey<KidReligionInformation>(kr => kr.Id)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
