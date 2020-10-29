@@ -94,3 +94,10 @@ ALTER TABLE "Kinship" ADD CONSTRAINT "FK_Kinship_Family_FamilyId" FOREIGN KEY ("
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
 VALUES ('20201029000807_FksRestriction', '3.1.9');
 
+ALTER TABLE "KidReligionInformation" DROP CONSTRAINT "FK_KidReligionInformation_Kid_Id";
+
+ALTER TABLE "KidReligionInformation" ADD CONSTRAINT "FK_KidReligionInformation_Kid_Id" FOREIGN KEY ("Id") REFERENCES "Kid" ("Id") ON DELETE CASCADE;
+
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20201029011449_UpdateFkRestrictToCascadeFromTableKidReligion', '3.1.9');
+
