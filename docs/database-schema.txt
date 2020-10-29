@@ -79,3 +79,18 @@ CREATE TABLE "KidReligionInformation" (
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
 VALUES ('20201023011235_KidReligionInformation', '3.1.9');
 
+ALTER TABLE "Kid" DROP CONSTRAINT "FK_Kid_Family_FamilyId";
+
+ALTER TABLE "KidReligionInformation" DROP CONSTRAINT "FK_KidReligionInformation_Kid_Id";
+
+ALTER TABLE "Kinship" DROP CONSTRAINT "FK_Kinship_Family_FamilyId";
+
+ALTER TABLE "Kid" ADD CONSTRAINT "FK_Kid_Family_FamilyId" FOREIGN KEY ("FamilyId") REFERENCES "Family" ("Id") ON DELETE RESTRICT;
+
+ALTER TABLE "KidReligionInformation" ADD CONSTRAINT "FK_KidReligionInformation_Kid_Id" FOREIGN KEY ("Id") REFERENCES "Kid" ("Id") ON DELETE RESTRICT;
+
+ALTER TABLE "Kinship" ADD CONSTRAINT "FK_Kinship_Family_FamilyId" FOREIGN KEY ("FamilyId") REFERENCES "Family" ("Id") ON DELETE RESTRICT;
+
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20201029000807_FksRestriction', '3.1.9');
+
