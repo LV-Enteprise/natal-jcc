@@ -29,7 +29,7 @@ namespace Family.Manager.Infrastructure.Mappings
             builder.HasOne(k => k.KidReligionInformation)
                    .WithOne(kr => kr.Kid)
                    .HasForeignKey<KidReligionInformation>(kr => kr.Id)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

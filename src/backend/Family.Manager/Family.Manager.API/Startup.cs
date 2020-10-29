@@ -23,10 +23,10 @@ namespace Family.Manager.API
             services.RegisterSwagger();
             services.RegisterServices();
             services.AddAutoMapper(typeof(Startup));
+            services.AddGlobalExceptionHandlerMiddleware();
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
-                    //options.SerializerSettings.ContractResolver = new LowerCaseContractResolver();
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
         }
@@ -36,6 +36,10 @@ namespace Family.Manager.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseGlobalExceptionHandlerMiddleware();
             }
 
             app.UseHttpsRedirection();
