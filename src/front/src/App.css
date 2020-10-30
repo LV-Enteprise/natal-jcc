@@ -14,3 +14,11 @@
   justify-content: center;
   font-size: 3rem;
 }
+
+.home h1 {
+  color:red;
+}
+
+.home a {
+ margin: 0 2em 0 3em;
+}
