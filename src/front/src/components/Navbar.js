@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from 'react-router-dom';
-import { SidebarData } from './SidebaData';
+import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 
@@ -19,7 +19,7 @@ function Navbar() {
         </Link>
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <ul classsName='nav-menu-items' onClick={showSidebar}>
+        <ul className='nav-menu-items' onClick={showSidebar}>
           <li className="navbar-toggle">
             <Link to="#" className='menu-bars'>
               <AiIcons.AiFillCloseSquare />
