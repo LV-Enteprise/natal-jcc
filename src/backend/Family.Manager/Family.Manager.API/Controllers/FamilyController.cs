@@ -37,10 +37,20 @@ namespace Family.Manager.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<FamilyWithKidsAndKinshipsResponse>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllFamiliesAsync()
+        [ProducesResponseType(typeof(IEnumerable<FamilyWithDescriptionResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllFamiliesDescriptionAsync()
         {
-            var families = await _familyRepository.GetFamiliesWithKidsAndKinshipsAsync();
+            var families = await _familyRepository.GetFamiliesDescriptionAsync();
+            var result = _mapper.Map<IEnumerable<FamilyWithDescriptionResponse>>(families);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("{familyId}")]
+        [ProducesResponseType(typeof(IEnumerable<FamilyWithKidsAndKinshipsResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllFamiliesAsync(string familyId)
+        {
+            var families = await _familyRepository.GetFamilyWithKidsAndKinshipsAsync(Guid.Parse(familyId));
             var result = _mapper.Map<IEnumerable<FamilyWithKidsAndKinshipsResponse>>(families);
             return Ok(result);
         }
@@ -49,7 +59,6 @@ namespace Family.Manager.API.Controllers
         public async Task<IActionResult> PostFamilyAsync([FromBody] CreateFamilyRequest request)
         {
             var kinships = new List<Kinship>();
-            var kids = new List<Kid>();
             var family = _mapper.Map<Domain.Entities.Family>(request);
 
             foreach (var kinship in request.Kinships)
@@ -57,20 +66,10 @@ namespace Family.Manager.API.Controllers
                 kinships.Add(new Kinship(kinship.Description, kinship.PersonName, family.Id));
             }
 
-            foreach (var kid in request.Kids)
-            {
-                var newKid = new Kid(kid.Name, kid.BirthDate, kid.Observation, family.Id);
-                var religionInformation = new KidReligionInformation(newKid, kid.IsBaptized, kid.DoingCatechesis, kid.DoneCatechesis, kid.DoingPerse, kid.DonePerse, kid.DoingConfirmationSacrament, kid.DoneConfirmationSacrament);
-                newKid.UpdateReligionInformation(religionInformation);
-
-                kids.Add(newKid);
-            }
-
             family.AddKinships(kinships);
-            family.AddKids(kids);
             await _familyRepository.CreateAsync(family);
 
-            return Ok(family);
+            return Ok();
         }
 
         [HttpPut]
@@ -102,27 +101,42 @@ namespace Family.Manager.API.Controllers
         }
 
         [HttpPost]
-        [Route("{familyId}/kid")]
+        [Route("{familyId}/kids")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> PostKidAsync(string familyId, [FromBody] EditKid_Request request)
+        public async Task<IActionResult> PostKidAsync(string familyId, [FromBody] IEnumerable<EditKid_Request> requests)
         {
-            var kid = new Kid(request.Name, request.BirthDate, request.Observation, Guid.Parse(familyId));
-            var religionInformation = new KidReligionInformation(kid, request.IsBaptized, request.DoingCatechesis, request.DoneCatechesis, request.DoingPerse, request.DonePerse, request.DoingConfirmationSacrament, request.DoneConfirmationSacrament);
-            kid.UpdateReligionInformation(religionInformation);
-            await _kidRepository.CreateAsync(kid);
+            var kids = new List<Kid>();
+            foreach (var kidRequest in requests)
+            {
+                kidRequest.FamilyId = Guid.Parse(familyId);
+                var kid = _mapper.Map<Kid>(kidRequest);
+                kid.Id = Guid.NewGuid();
 
+                var religionInformation = new KidReligionInformation(kid, kidRequest.IsBaptized, kidRequest.DoingCatechesis, kidRequest.DoneCatechesis, kidRequest.DoingPerse, kidRequest.DonePerse, kidRequest.DoingConfirmationSacrament, kidRequest.DoneConfirmationSacrament);
+                kid.UpdateReligionInformation(religionInformation);
+
+                kids.Add(kid);
+            }
+
+            await _kidRepository.BulkInsertAsync(kids);
             return Ok();
         }
 
         [HttpPost]
-        [Route("{familyId}/kinship")]
+        [Route("{familyId}/kinships")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> PostKinshipAsync(string familyId, [FromBody] EditKinship_Request request)
+        public async Task<IActionResult> PostKinshipAsync(string familyId, [FromBody] IEnumerable<EditKinship_Request> requests)
         {
-            request.FamilyId = Guid.Parse(familyId);
-            var kinship = new Kinship(request.Description, request.PersonName, request.FamilyId);
-            await _kinshipRepository.CreateAsync(kinship);
-
+            var kinships = new List<Kinship>();
+            foreach (var kinshipRequest in requests)
+            {
+                kinshipRequest.FamilyId = Guid.Parse(familyId);
+                var kinship = _mapper.Map<Kinship>(kinshipRequest);
+                kinship.Id = Guid.NewGuid();
+                kinships.Add(kinship);
+            }
+            
+            await _kinshipRepository.BulkInsertAsync(kinships);
             return Ok();
         }
     }

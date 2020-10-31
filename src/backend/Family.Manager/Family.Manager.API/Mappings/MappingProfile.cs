@@ -17,6 +17,7 @@ namespace Family.Manager.API.Mappings
                 .ForMember(dest => dest.DoingConfirmationSacrament, opt => opt.MapFrom(src => src.KidReligionInformation.DoingConfirmationSacrament))
                 .ForMember(dest => dest.DoneConfirmationSacrament, opt => opt.MapFrom(src => src.KidReligionInformation.DoneConfirmationSacrament));
 
+            CreateMap<Domain.Entities.Family, FamilyWithDescriptionResponse>();
             CreateMap<CreateFamily_Kinship_Request, Kinship>();
             CreateMap<EditKid_Request, Kid>();
             CreateMap<CreateFamilyRequest, Domain.Entities.Family>();

@@ -8,12 +8,13 @@ namespace Family.Manager.API.Models
     {
         public CreateFamilyRequest()
         {
-            Kids = new List<EditKid_Request>();
             Kinships = new List<CreateFamily_Kinship_Request>();
         }
 
         [JsonIgnore]
         public Guid Id { get; set; }
+
+        public string Description { get; set; }
 
         public string Address { get; set; }
 
@@ -28,8 +29,6 @@ namespace Family.Manager.API.Models
         public string Observation { get; set; }
 
         public int TotalFamilyMembers { get; set; }
-
-        public IEnumerable<EditKid_Request> Kids { get; set; }
 
         public IEnumerable<CreateFamily_Kinship_Request> Kinships { get; set; }
     }

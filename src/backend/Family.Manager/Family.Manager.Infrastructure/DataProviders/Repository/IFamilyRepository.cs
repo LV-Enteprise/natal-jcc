@@ -7,6 +7,7 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository
 {
     public interface IFamilyRepository : IRepositoryBase<Domain.Entities.Family, Guid>
     {
-        Task<IEnumerable<Domain.Entities.Family>> GetFamiliesWithKidsAndKinshipsAsync();
+        Task<IEnumerable<Domain.Entities.Family>> GetFamilyWithKidsAndKinshipsAsync(Guid familyId);
+        Task<IEnumerable<Domain.Entities.Family>> GetFamiliesDescriptionAsync();
     }
 }

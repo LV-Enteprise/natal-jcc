@@ -9,6 +9,7 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository.Abstract
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity> GetByIdAsync(TKey key);
         Task CreateAsync(TEntity entity);
+        Task BulkInsertAsync(IEnumerable<TEntity> entities);
         Task UpdateAsync(TEntity entity);
         Task DeleteAsync(TEntity entity);
         Task SaveChangesAsync();

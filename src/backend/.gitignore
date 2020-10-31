@@ -361,4 +361,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# My custom ignoring files
+aws-beanstalk-tools-defaults.json
 appsettings.Development.json

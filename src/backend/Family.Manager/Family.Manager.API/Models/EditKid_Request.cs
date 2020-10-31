@@ -27,5 +27,8 @@ namespace Family.Manager.API.Models
         public bool DoingConfirmationSacrament { get; set; }
 
         public bool DoneConfirmationSacrament { get; set; }
+        
+        [JsonIgnore]
+        public Guid FamilyId { get; set; }
     }
 }
