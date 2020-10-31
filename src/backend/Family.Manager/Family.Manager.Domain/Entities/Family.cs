@@ -8,6 +8,7 @@ namespace Family.Manager.Domain.Entities
         private Family() { }
 
         public Family(
+            string description,
             string address,
             string phoneNumber,
             string cellPhoneNumber,
@@ -17,6 +18,7 @@ namespace Family.Manager.Domain.Entities
             int totalFamilyMembers)
         {
             Id = Guid.NewGuid();
+            Description = description;
             Address = address;
             PhoneNumber = phoneNumber;
             CellPhoneNumber = cellPhoneNumber;
@@ -28,6 +30,7 @@ namespace Family.Manager.Domain.Entities
             Kids = new List<Kid>();
         }
 
+        public string Description { get; private set; }
         public string Address { get; private set; }
         public string PhoneNumber { get; private set; }
         public string CellPhoneNumber { get; private set; }

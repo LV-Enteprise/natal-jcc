@@ -101,3 +101,7 @@ ALTER TABLE "KidReligionInformation" ADD CONSTRAINT "FK_KidReligionInformation_K
 INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
 VALUES ('20201029011449_UpdateFkRestrictToCascadeFromTableKidReligion', '3.1.9');
 
+ALTER TABLE "Family" ADD "Description" character varying(255) NOT NULL;
+
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20201031142639_AddDescriptionToFamilyTable', '3.1.9');
