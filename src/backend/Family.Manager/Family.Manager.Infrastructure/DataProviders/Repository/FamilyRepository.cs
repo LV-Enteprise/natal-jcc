@@ -3,6 +3,7 @@ using Family.Manager.Infrastructure.DataProviders.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Family.Manager.Infrastructure.DataProviders.Repository
@@ -16,10 +17,16 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<Domain.Entities.Family>> GetFamiliesWithKidsAndKinshipsAsync()
+        public async Task<IEnumerable<Domain.Entities.Family>> GetFamiliesDescriptionAsync()
+        {
+            return await _context.Families.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IEnumerable<Domain.Entities.Family>> GetFamilyWithKidsAndKinshipsAsync(Guid familyId)
         {
             return await _context.Families
                 .AsNoTracking()
+                .Where(f => f.Id.Equals(familyId))
                 .Include(f => f.Kinships)
                 .Include(f => f.Kids)
                 .ThenInclude(k => k.KidReligionInformation)

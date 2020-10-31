@@ -8,7 +8,7 @@ namespace Family.Manager.Infrastructure.Mappings
         public void Configure(EntityTypeBuilder<Domain.Entities.Family> builder)
         {
             builder.ToTable("Family");
-            builder.HasKey(f => f.Id);
+            builder.HasKey(f => f.Id);            
 
             builder.Property(f => f.Address)
                 .HasColumnType("character varying(255)")
@@ -33,6 +33,10 @@ namespace Family.Manager.Infrastructure.Mappings
 
             builder.Property(f => f.TotalFamilyMembers)
                 .HasColumnType("integer")
+                .IsRequired();
+
+            builder.Property(f => f.Description)
+                .HasColumnType("character varying(255)")
                 .IsRequired();
         }
     }

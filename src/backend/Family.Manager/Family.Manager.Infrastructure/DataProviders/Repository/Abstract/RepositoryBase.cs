@@ -33,6 +33,12 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository.Abstract
             await SaveChangesAsync();
         }
 
+        public async Task BulkInsertAsync(IEnumerable<TEntity> entities)
+        {
+            await _dbSet.AddRangeAsync(entities);
+            await SaveChangesAsync();
+        }
+
         public async Task UpdateAsync(TEntity entity)
         {
             _familyContext.Entry(entity).State = EntityState.Modified;
@@ -48,6 +54,6 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository.Abstract
         public async Task SaveChangesAsync()
         {
             _ = await _familyContext.SaveChangesAsync();
-        }
+        }        
     }
 }

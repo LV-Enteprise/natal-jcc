@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20201023003142_KidReligionInformation.Designer.cs" />
     <Compile Remove="Migrations\20201023004641_KidReligionInformation.cs" />
     <Compile Remove="Migrations\20201023004641_KidReligionInformation.Designer.cs" />
+    <Compile Remove="Migrations\20201031142055_AddDescriptionToFamilyTable.cs" />
+    <Compile Remove="Migrations\20201031142055_AddDescriptionToFamilyTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

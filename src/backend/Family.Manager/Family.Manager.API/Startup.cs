@@ -1,10 +1,12 @@
 using AutoMapper;
+using Family.Manager.Infrastructure.Configurations.JsonSettings;
 using Family.Manager.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 
 namespace Family.Manager.API
 {
@@ -25,10 +27,18 @@ namespace Family.Manager.API
             services.AddAutoMapper(typeof(Startup));
             services.AddGlobalExceptionHandlerMiddleware();
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                });
+               .AddJsonOptions(options =>
+               {
+                   options.JsonSerializerOptions.PropertyNamingPolicy = new CustomPropertyNamingPolicy();
+                   options.JsonSerializerOptions.IgnoreNullValues = true;
+                   options.JsonSerializerOptions.WriteIndented = false;
+                   options.JsonSerializerOptions.AllowTrailingCommas = false;
+                   options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+               });
+               //.AddNewtonsoftJson(options =>
+               //{
+               //    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+               //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
