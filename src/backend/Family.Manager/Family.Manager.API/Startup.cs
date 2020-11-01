@@ -21,6 +21,13 @@ namespace Family.Manager.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var allowedOrigins = Configuration.GetValue<string>("AllowedOrigins")?.Split(",") ?? new string[0];
+            services.AddCors(options =>
+            {
+                options.AddPolicy("ClientApplication", builder => 
+                    builder.WithOrigins(allowedOrigins).WithMethods("GET","POST","PUT","DELETE").WithHeaders("Content-Type"));
+            });
+
             services.AddDbService(Configuration.GetConnectionString("FamilyDb"));
             services.RegisterSwagger();
             services.RegisterServices();
@@ -55,6 +62,7 @@ namespace Family.Manager.API
             app.UseHttpsRedirection();
             app.UseSwaggerConfigurations();
             app.UseRouting();
+            app.UseCors("ClientApplication");
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
