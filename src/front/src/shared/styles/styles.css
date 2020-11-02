@@ -1,0 +1,21 @@
+:root {
+  --main-bg-color: #f9f9f9;
+  --text-color: #212529;
+
+  /* Equivalente a 10px */
+  --root-font-size: 62.5%;
+
+  /* Loader */
+  --loader-text-color: #16202b;
+  --pre-loader-0: #f88738;
+  --pre-loader-25: #dc327b;
+  --pre-loader-50-100: #16202b;
+
+  /* Buttons */
+  --button-edit-hover: brown;
+
+  /* Table */
+  --box-shadow-color: black;
+  --td-th-border-color: #ccc;
+  --odd-row-bg-color: #eee;
+}

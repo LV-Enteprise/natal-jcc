@@ -1,0 +1,13 @@
+.families {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem;
+  position: relative;
+  width: 100%;
+}
+
+@media screen and (min-width: 728px) {
+  .families {
+    padding: 1.6rem 0;
+  }
+}
