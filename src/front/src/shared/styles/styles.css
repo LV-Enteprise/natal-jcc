@@ -1,6 +1,7 @@
 :root {
   --main-bg-color: #f9f9f9;
   --text-color: #212529;
+  --h1-box-shadow-color: #ccc;
 
   /* Equivalente a 10px */
   --root-font-size: 62.5%;

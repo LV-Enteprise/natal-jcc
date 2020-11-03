@@ -1,0 +1,13 @@
+.kids__table thead th:nth-child(1) {
+  width: 10%;
+}
+
+.kids__table thead th:nth-child(2) {
+  width: 90%;
+}
+
+.actions__column {
+  display: flex;
+  padding: 1.6rem 0;
+  justify-content: space-evenly;
+}

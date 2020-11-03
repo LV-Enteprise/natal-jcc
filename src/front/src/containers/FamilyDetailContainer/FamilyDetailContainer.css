@@ -1,0 +1,30 @@
+@import url('../../shared/styles/styles.css');
+
+.family__datail {
+  padding: 0 8px;
+}
+
+.family__title {
+  text-align: center;
+  border-bottom: 1px solid var(--h1-box-shadow-color);
+  margin: 0;
+  padding: 0.8rem 0;
+}
+
+.familly__kinships,
+.familly__kids {
+  margin-top: 4rem;
+}
+
+.familly__kinships .family__title,
+.familly__kids .family__title {
+  margin-bottom: 1.6rem;
+  text-align: start;
+  border-bottom: none;
+}
+
+@media screen and (min-width: 728px) {
+  .family__datail {
+    padding: 0;
+  }
+}
