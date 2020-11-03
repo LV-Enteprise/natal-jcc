@@ -90,12 +90,14 @@ span {
 }
 
 .topbar__logo {
-  display: inline-block;
+  display: flex;
   height: 40px;
+  align-items: center;
 }
 
-.topbar__logo svg {
-  height: 100%;
+.topbar__logo .logo {
+  color: white;
+  font-size: 2.8rem;
 }
 
 .topbar__group {

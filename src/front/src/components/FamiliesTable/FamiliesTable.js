@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './FamiliesTable.css';
 
+import EditButton from '../EditButton';
+
 const FamiliesTable = ({ families }) => (
   <div className="table__container">
-    <table>
+    <table className="families__table">
       <thead>
         <tr>
           <th>&nbsp;</th>
@@ -15,9 +18,7 @@ const FamiliesTable = ({ families }) => (
         {families.map((family, index) => (
           <tr key={family.id}>
             <td>
-              <button className="button--edit">
-                <i className="fas fa-edit"></i>
-              </button>
+              <EditButton url={`families/${family.id}`} description="Ver mais detalhes" />
             </td>
             <td key={index}>{family.description}</td>
           </tr>
@@ -26,5 +27,14 @@ const FamiliesTable = ({ families }) => (
     </table>
   </div>
 );
+
+FamiliesTable.propTypes = {
+  families: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};
 
 export default FamiliesTable;

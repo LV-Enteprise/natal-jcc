@@ -1,0 +1,11 @@
+.kinships__table thead th:nth-child(1) {
+  width: 10%;
+}
+
+.kinships__table thead th:nth-child(2) {
+  width: 20%;
+}
+
+.kinships__table thead th:nth-child(3) {
+  width: 70%;
+}
