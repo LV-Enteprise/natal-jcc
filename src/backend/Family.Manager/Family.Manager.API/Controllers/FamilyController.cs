@@ -47,11 +47,11 @@ namespace Family.Manager.API.Controllers
 
         [HttpGet]
         [Route("{familyId}")]
-        [ProducesResponseType(typeof(IEnumerable<FamilyWithKidsAndKinshipsResponse>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetAllFamiliesAsync(string familyId)
+        [ProducesResponseType(typeof(FamilyWithKidsAndKinshipsResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetFamilyAsync(string familyId)
         {
-            var families = await _familyRepository.GetFamilyWithKidsAndKinshipsAsync(Guid.Parse(familyId));
-            var result = _mapper.Map<IEnumerable<FamilyWithKidsAndKinshipsResponse>>(families);
+            var family = await _familyRepository.GetFamilyWithKidsAndKinshipsAsync(Guid.Parse(familyId));
+            var result = _mapper.Map<FamilyWithKidsAndKinshipsResponse>(family);
             return Ok(result);
         }
 

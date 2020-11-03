@@ -22,7 +22,7 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository
             return await _context.Families.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<Domain.Entities.Family>> GetFamilyWithKidsAndKinshipsAsync(Guid familyId)
+        public async Task<Domain.Entities.Family> GetFamilyWithKidsAndKinshipsAsync(Guid familyId)
         {
             return await _context.Families
                 .AsNoTracking()
@@ -30,7 +30,7 @@ namespace Family.Manager.Infrastructure.DataProviders.Repository
                 .Include(f => f.Kinships)
                 .Include(f => f.Kids)
                 .ThenInclude(k => k.KidReligionInformation)
-                .ToListAsync();
+                .SingleOrDefaultAsync();
         }
     }
 }
