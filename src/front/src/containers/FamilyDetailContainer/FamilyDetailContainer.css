@@ -1,6 +1,6 @@
 @import url('../../shared/styles/styles.css');
 
-.family__datail {
+.family__detail {
   padding: 0 8px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 @media screen and (min-width: 728px) {
-  .family__datail {
+  .family__detail {
     padding: 0;
   }
 }

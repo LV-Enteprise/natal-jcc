@@ -8,7 +8,7 @@ import KinshipsTable from '../../components/KinshipsTable';
 import KidsTable from '../../components/KidsTable';
 
 const FamilyDetailContainer = ({ details }) => (
-  <div className="family__datail">
+  <div className="family__detail">
     <h1 className="family__title">
       Família - {`${details.description}`.toUpperCase()}
     </h1>

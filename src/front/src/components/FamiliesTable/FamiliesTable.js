@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './FamiliesTable.css';
 
-import EditButton from '../EditButton';
+import DetailButton from '../DetailButton';
 
 const FamiliesTable = ({ families }) => (
   <div className="table__container">
@@ -18,7 +18,7 @@ const FamiliesTable = ({ families }) => (
         {families.map((family, index) => (
           <tr key={family.id}>
             <td>
-              <EditButton url={`families/${family.id}`} description="Ver mais detalhes" />
+              <DetailButton url={`families/${family.id}`} description="Ver mais detalhes" />
             </td>
             <td key={index}>{family.description}</td>
           </tr>

@@ -37,11 +37,11 @@ KinshipsTable.propTypes = {
   familyId: PropTypes.string.isRequired,
   kinships: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
-      description: PropTypes.string,
-      person_name: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      person_name: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
 };
 
 export default KinshipsTable;
