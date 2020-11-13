@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import './FamiliesTable.css';
 
 import DetailButton from '../DetailButton';
+import AddButton from '../AddButton';
 
 const FamiliesTable = ({ families }) => (
   <div className="table__container">
     <table className="families__table">
       <thead>
         <tr>
-          <th>&nbsp;</th>
+          <th>
+            <AddButton url={`/`} />
+            </th>
           <th>Descrição</th>
         </tr>
       </thead>

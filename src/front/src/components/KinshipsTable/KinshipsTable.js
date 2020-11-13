@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import './KinshipsTable.css';
 
 import EditButton from '../EditButton';
+import AddButton from '../AddButton';
 
 const KinshipsTable = ({ familyId, kinships }) => (
   <div className="table__container">
     <table className="kinships__table">
       <thead>
         <tr>
-          <th>&nbsp;</th>
+          <th><AddButton url={`/`} /></th>
           <th>Descrição</th>
           <th>Nome</th>
         </tr>

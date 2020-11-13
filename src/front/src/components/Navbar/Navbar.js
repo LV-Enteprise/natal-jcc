@@ -8,7 +8,7 @@ const Navbar = () => (
     <div className="container">
       <div className="topbar__logo">
         <Link to="/" className="logo">
-          <span>JCC</span>
+          <span>Campanha de Natal Jcc</span>
         </Link>
       </div>
 
