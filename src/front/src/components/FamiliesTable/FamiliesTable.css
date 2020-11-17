@@ -5,3 +5,7 @@
 .families__table thead th:nth-child(2) {
   width: 90%;
 }
+
+.families__table th{
+  text-align: center ;
+}

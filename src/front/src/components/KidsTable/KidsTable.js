@@ -5,13 +5,14 @@ import './KidsTable.css';
 
 import EditButton from '../EditButton';
 import DetailButton from '../DetailButton';
+import AddButton from '../AddButton';
 
 const KidsTable = ({ familyId, kids }) => (
   <div className="table__container">
     <table className="kids__table">
       <thead>
         <tr>
-          <th>&nbsp;</th>
+          <th><AddButton url={`/`} /></th>
           <th>Nome</th>
         </tr>
       </thead>

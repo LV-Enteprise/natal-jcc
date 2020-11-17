@@ -1,0 +1,5 @@
+@import url('../../shared/styles/styles.css');
+
+.add__button:hover {
+  color: var(--button-edit-hover);
+}
