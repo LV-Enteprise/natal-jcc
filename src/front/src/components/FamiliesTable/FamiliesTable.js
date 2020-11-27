@@ -12,7 +12,7 @@ const FamiliesTable = ({ families }) => (
       <thead>
         <tr>
           <th>
-            <AddButton url={`/`} description="Adicionar uma família"/>
+            <AddButton url={`families/familyaddcontainer`} description="Adicionar uma família"/>
             </th>
           <th>Descrição</th>
         </tr>
