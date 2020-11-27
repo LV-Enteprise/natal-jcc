@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import FamilyDetailContainer from '../../containers/FamilyDetailContainer';
 import Loading from '../../components/Loading';
 import Urls from '../../shared/BaseUrls';
+
+import FamilyDetailContainer from '../../containers/FamilyDetailContainer';
 
 const FamiliesRoute = () => {
   const { familyId } = useParams();
